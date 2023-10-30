@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">HomeFixers</string>
+    <string name="button_text_register_user">Зарегестрироваться</string>
+    <string name="button_text_sign_in_user">Войти</string>
+    <string name="qustion_employees_text">Вы хотите оказывать услуги?</string>
+    <string name="singin_no_register">Войти без регистрации</string>
+    <string name="register_executor">Зарегестрироваться как исполнитель</string>
+    <string name="signin_executor">Войти как исполнитель</string>
+</resources>
