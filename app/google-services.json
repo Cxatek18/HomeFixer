@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "196792288526",
+    "project_id": "homefixer-faa74",
+    "storage_bucket": "homefixer-faa74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196792288526:android:7f3e51087736c5984c035f",
+        "android_client_info": {
+          "package_name": "com.team.homefixers"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAajhdzrJPZr505rUZwhfFCuQzhzMQdpQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
