@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -32,6 +33,8 @@ android {
 }
 
 dependencies {
+    implementation("com.google.firebase:firebase-auth:22.2.0")
+    implementation("com.google.firebase:firebase-database:20.3.0")
     val room_version = "2.5.2"
 
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -49,4 +52,6 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
     implementation("androidx.room:room-rxjava3:$room_version")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    implementation("com.google.firebase:firebase-bom:32.4.0")
 }

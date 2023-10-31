@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <item
+        android:id="@+id/itemMenuPersonalCabinet"
+        android:title="@string/text_personal_cabinet" />
+    <item
+        android:id="@+id/itemMenuChangePassword"
+        android:title="@string/text_change_password" />
+    <item
+        android:id="@+id/itemMenuHelp"
+        android:title="@string/text_help" />
+    <item
+        android:id="@+id/itemMenuLogout"
+        android:title="@string/text_logout" />
 </menu>

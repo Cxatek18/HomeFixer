@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterUserActivity">
+    tools:context=".LoginUserActivity">
 
     <TextView
-        android:id="@+id/textViewRegisterText"
+        android:id="@+id/textViewLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="@string/text_reg_in_register_user_activity"
+        android:text="@string/signin_account_text"
         android:textAllCaps="true"
         android:textColor="@color/first_main_color"
         android:textSize="28sp"
@@ -21,19 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextRegUserName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="25dp"
-        android:hint="@string/hint_text_name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegisterText" />
-
-    <EditText
-        android:id="@+id/editTextRegUserEmail"
+        android:id="@+id/editTextLoginEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
@@ -42,10 +30,10 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegUserName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewLogin" />
 
     <EditText
-        android:id="@+id/editTextRegUserPassword"
+        android:id="@+id/editTextLoginPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
@@ -54,45 +42,32 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegUserEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLoginEmail" />
 
-    <EditText
-        android:id="@+id/editTextRegUserPhone"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textViewLoginForgotPassword"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="25dp"
-        android:hint="@string/hint_text_phone"
-        android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegUserPassword" />
-
-    <EditText
-        android:id="@+id/editTextRegUserCity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="25dp"
-        android:hint="@string/hint_text_city"
-        android:inputType="textPostalAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegUserPhone" />
+        android:layout_marginTop="8dp"
+        android:text="@string/text_login_forgot_password"
+        android:textColor="#9E808080"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/editTextLoginPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLoginPassword" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonRegRegisterUser"
+        android:id="@+id/buttonLoginUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="35dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/background_btn_1"
-        android:text="@string/button_text_register_user"
+        android:text="@string/button_text_sign_in_user"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegUserCity" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewLoginForgotPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,8 +10,17 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/builder_svgrepo_com"
         android:supportsRtl="true"
-        android:theme="@style/Base.Theme.HomeFixers"
+        android:theme="@style/Theme.Material3.DayNight"
         tools:targetApi="31">
+        <activity
+            android:name=".LoginUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SelectionPerformersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterUserActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
