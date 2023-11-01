@@ -42,6 +42,11 @@ public class SelectionPerformersActivity extends AppCompatActivity {
             viewModel.logout();
             finish();
         }
+        if(item.getItemId() == R.id.itemMenuChangePassword){
+            Intent intent = ForgotPasswordActivity.newIntent(SelectionPerformersActivity.this);
+            startActivity(intent);
+            finish();
+        }
         return super.onOptionsItemSelected(item);
     }
 }

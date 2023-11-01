@@ -19,4 +19,6 @@
     <string name="text_change_password">Поменять пароль</string>
     <string name="signin_account_text">Вход в аккаунт</string>
     <string name="text_login_forgot_password">Восстановить пароль</string>
+    <string name="forgot_password_text">Восстановление пароля</string>
+    <string name="forgot_text">Восстановить</string>
 </resources>

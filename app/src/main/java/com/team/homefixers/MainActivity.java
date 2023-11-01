@@ -51,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        buttonSignInAnonimUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = SelectionPerformersActivity.newIntent(MainActivity.this);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
