@@ -57,10 +57,6 @@ public class LoginUserActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        if(item.getItemId() == R.id.itemMenuSigninNoRegister){
-            Intent intent = SelectionPerformersActivity.newIntent(LoginUserActivity.this);
-            startActivity(intent);
-        }
         return super.onOptionsItemSelected(item);
     }
 

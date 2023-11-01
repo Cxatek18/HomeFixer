@@ -7,9 +7,6 @@
         android:id="@+id/itemMenuHelp"
         android:title="@string/text_help" />
     <item
-        android:id="@+id/itemMenuSigninNoRegister"
-        android:title="@string/singin_no_register" />
-    <item
         android:id="@+id/itemMenuLogout"
         android:title="@string/text_logout" />
 </menu>

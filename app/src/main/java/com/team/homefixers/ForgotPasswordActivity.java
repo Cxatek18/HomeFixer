@@ -59,10 +59,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        if(item.getItemId() == R.id.itemMenuSigninNoRegister){
-            Intent intent = SelectionPerformersActivity.newIntent(ForgotPasswordActivity.this);
-            startActivity(intent);
-        }
         return super.onOptionsItemSelected(item);
     }
 
