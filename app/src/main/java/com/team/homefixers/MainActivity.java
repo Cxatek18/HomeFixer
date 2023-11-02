@@ -65,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
                 viewModelAnonymous.signInAnonymousUser();
             }
         });
+
+        textViewRegisterExecutor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = RegisterExecutorActivity.newIntent(MainActivity.this);
+                startActivity(intent);
+            }
+        });
     }
 
     private void observeAnonymousViewModel(){

@@ -21,4 +21,53 @@
     <string name="text_login_forgot_password">Восстановить пароль</string>
     <string name="forgot_password_text">Восстановление пароля</string>
     <string name="forgot_text">Восстановить</string>
+    <string name="text_reg_in_register_executor_activity">Регистрация как исполнитель</string>
+    <string name="text_choice_specialization">Выберите вашу специализацию</string>
+    <string name="text_reg_executor_description">Опишите себя и ваши услуги</string>
+    <string name="text_hint_about_us">О себе:</string>
+    <string name="text_hint_executor_price">Цена руб/час:</string>
+    <string name="text_executor_experience">Ваш опыт работы</string>
+    <string name="text_executor_contract">Работаете по договору</string>
+    <string name="text_executor_guarantee">Есть ли гарантия на ваши услуги</string>
+    <string name="text_executor_urgency">Срочные заказы</string>
+
+    <array name="array_specialization">
+        <item>Сантехник</item>
+        <item>Электрик</item>
+        <item>Компьютерный мастер</item>
+        <item>Муж на час</item>
+        <item>Грузчик</item>
+        <item>Садовый мастер</item>
+        <item>Каменщик</item>
+        <item>Сборщик мебели</item>
+        <item>Разнорабочий</item>
+        <item>Монтажник систем вентиляции и кондиционирования</item>
+        <item>Уборщик</item>
+        <item>Мастер на все руки</item>
+    </array>
+
+    <array name="array_experience">
+        <item>Без опыта</item>
+        <item>Меньше 1 года</item>
+        <item>1 год</item>
+        <item>3 года</item>
+        <item>Больше 5 лет</item>
+        <item>Меньше 10 лет</item>
+        <item>Больше 10 лет</item>
+    </array>
+
+    <array name="array_contract">
+        <item>Да</item>
+        <item>Нет</item>
+    </array>
+
+    <array name="array_guarantee">
+        <item>С гарантией</item>
+        <item>Без гарантии</item>
+    </array>
+
+    <array name="array_urgency">
+        <item>Да</item>
+        <item>Нет</item>
+    </array>
 </resources>

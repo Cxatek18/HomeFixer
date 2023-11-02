@@ -18,6 +18,8 @@ public class SelectionPerformersActivity extends AppCompatActivity {
     private static final String KEY_ANONYMOUS = "anonymous";
     private boolean anonymous;
 
+    private boolean isSignOut;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +55,8 @@ public class SelectionPerformersActivity extends AppCompatActivity {
             if(item.getItemId() == R.id.itemMenuLogout){
                 Intent intent = MainActivity.newIntent(SelectionPerformersActivity.this);
                 startActivity(intent);
-                viewModel.logout();
+                isSignOut = true;
+                viewModel.deleteUser();
                 finish();
             }
         }else{
@@ -75,8 +78,12 @@ public class SelectionPerformersActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         if(anonymous){
-            viewModel.logout();
-            finish();
+            if(!isSignOut){
+                viewModel.deleteUser();
+                finish();
+            }else{
+                finish();
+            }
         }
         super.onDestroy();
     }
