@@ -8,12 +8,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.team.homefixers.viewmodels.AuthorizationForAnonymousViewModel;
 import com.team.homefixers.viewmodels.MainViewModel;
@@ -111,16 +109,16 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    public static Intent newIntent(Context context){
-        Intent intent = new Intent(context, MainActivity.class);
-        return intent;
-    }
-
     private void initViews(){
         buttonRegisterUser = findViewById(R.id.buttonRegisterUser);
         buttonSignInUser = findViewById(R.id.buttonSignInUser);
         buttonSignInAnonimUser = findViewById(R.id.buttonSignInAnonimUser);
         textViewRegisterExecutor = findViewById(R.id.textViewRegisterExecutor);
         textViewSigninExecutor = findViewById(R.id.textViewSigninExecutor);
+    }
+
+    public static Intent newIntent(Context context){
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
     }
 }

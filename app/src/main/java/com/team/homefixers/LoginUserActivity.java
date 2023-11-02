@@ -112,15 +112,15 @@ public class LoginUserActivity extends AppCompatActivity {
         });
     }
 
-    public static Intent newIntent(Context context){
-        Intent intent = new Intent(context, LoginUserActivity.class);
-        return intent;
-    }
-
     private void initViews(){
         editTextLoginEmail = findViewById(R.id.editTextLoginEmail);
         editTextLoginPassword = findViewById(R.id.editTextLoginPassword);
         textViewLoginForgotPassword = findViewById(R.id.textViewLoginForgotPassword);
         buttonLoginUser = findViewById(R.id.buttonLoginUser);
+    }
+
+    public static Intent newIntent(Context context){
+        Intent intent = new Intent(context, LoginUserActivity.class);
+        return intent;
     }
 }

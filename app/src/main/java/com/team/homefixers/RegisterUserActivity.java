@@ -60,11 +60,6 @@ public class RegisterUserActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static Intent newIntent(Context context){
-        Intent intent = new Intent(context, RegisterUserActivity.class);
-        return intent;
-    }
-
     private void onClickButtons(){
         buttonRegRegisterUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,5 +119,10 @@ public class RegisterUserActivity extends AppCompatActivity {
         editTextRegUserPhone = findViewById(R.id.editTextRegUserPhone);
         editTextRegUserCity = findViewById(R.id.editTextRegUserCity);
         buttonRegRegisterUser = findViewById(R.id.buttonRegRegisterUser);
+    }
+
+    public static Intent newIntent(Context context){
+        Intent intent = new Intent(context, RegisterUserActivity.class);
+        return intent;
     }
 }

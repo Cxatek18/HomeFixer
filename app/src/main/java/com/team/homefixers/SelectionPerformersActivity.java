@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -28,7 +27,6 @@ public class SelectionPerformersActivity extends AppCompatActivity {
     }
 
     public static Intent newIntent(Context context){
-        Log.d("SelectionPerformersActivity", "asdadadadIntent1");
         Intent intent = new Intent(context, SelectionPerformersActivity.class);
         return intent;
     }
@@ -72,5 +70,14 @@ public class SelectionPerformersActivity extends AppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(anonymous){
+            viewModel.logout();
+            finish();
+        }
+        super.onDestroy();
     }
 }

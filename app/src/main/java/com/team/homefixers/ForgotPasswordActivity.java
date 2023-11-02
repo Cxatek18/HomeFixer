@@ -106,13 +106,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         });
     }
 
-    public static Intent newIntent(Context context){
-        Intent intent = new Intent(context, ForgotPasswordActivity.class);
-        return intent;
-    }
-
     private void initViews(){
         editTextForgotPasswordEmail = findViewById(R.id.editTextForgotPasswordEmail);
         buttonForgotPassword = findViewById(R.id.buttonForgotPassword);
+    }
+
+    public static Intent newIntent(Context context){
+        Intent intent = new Intent(context, ForgotPasswordActivity.class);
+        return intent;
     }
 }
