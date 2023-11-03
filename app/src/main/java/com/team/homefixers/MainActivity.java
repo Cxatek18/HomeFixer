@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     private MainViewModel viewModel;
     private AuthorizationForAnonymousViewModel viewModelAnonymous;
-    private Boolean isAuthorizedAnonymous;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,11 +89,7 @@ public class MainActivity extends AppCompatActivity {
         viewModelAnonymous.getIsAuthorizedAnonymous().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean isAnonymous) {
-                isAuthorizedAnonymous = isAnonymous;
-                Intent intent = SelectionPerformersActivity.newIntentAnonymous(
-                        MainActivity.this,
-                        isAuthorizedAnonymous
-                );
+                Intent intent = SelectionPerformersActivity.newIntent(MainActivity.this);
                 startActivity(intent);
                 finish();
             }
