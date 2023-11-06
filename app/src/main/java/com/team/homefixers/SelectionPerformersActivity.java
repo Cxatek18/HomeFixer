@@ -1,12 +1,16 @@
 package com.team.homefixers;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -56,7 +60,6 @@ public class SelectionPerformersActivity extends AppCompatActivity {
                 Intent intent = MainActivity.newIntent(SelectionPerformersActivity.this);
                 startActivity(intent);
                 isSignOut = true;
-                viewModel.deleteUser();
                 finish();
             }
         }else{
@@ -77,13 +80,10 @@ public class SelectionPerformersActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        Log.d("SelectionPerformersActivity", "onDestroy");
         if(anonymous){
-            if(!isSignOut){
-                viewModel.deleteUser();
-                finish();
-            }else{
-                finish();
-            }
+            viewModel.deleteUser();
+            finish();
         }
         super.onDestroy();
     }

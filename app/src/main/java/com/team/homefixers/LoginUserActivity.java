@@ -29,6 +29,9 @@ public class LoginUserActivity extends AppCompatActivity {
 
     private LoginUserViewModel viewModel;
 
+    private static final String MESSAGE_FOR_ANONYMOUS_LOGIN = "Вы не можете войти, " +
+            "так как находитесь в анонимном аккаунте";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +80,24 @@ public class LoginUserActivity extends AppCompatActivity {
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser != null){
                     Intent intent = SelectionPerformersActivity.newIntent(LoginUserActivity.this);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+
+        viewModel.getAnonymousUser().observe(this, new Observer<FirebaseUser>() {
+            @Override
+            public void onChanged(FirebaseUser firebaseUser) {
+                if(firebaseUser != null){
+                    Intent intent = SelectionPerformersActivity.newIntentAnonymous(
+                            LoginUserActivity.this, true
+                    );
+                    Toast.makeText(
+                            LoginUserActivity.this,
+                            MESSAGE_FOR_ANONYMOUS_LOGIN,
+                            Toast.LENGTH_LONG
+                    ).show();
                     startActivity(intent);
                     finish();
                 }

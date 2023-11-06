@@ -29,6 +29,9 @@ public class RegisterUserActivity extends AppCompatActivity {
 
     private RegisterUserViewModel viewModel;
 
+    private static final String MESSAGE_FOR_ANONYMOUS_REGISTER = "Вы не можете воспользоваться " +
+            "регистарацией, так как находитесь в анонимном аккаунте";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +104,25 @@ public class RegisterUserActivity extends AppCompatActivity {
                     Intent intent = SelectionPerformersActivity.newIntent(
                             RegisterUserActivity.this
                     );
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+
+        viewModel.getAnonymousUser().observe(this, new Observer<FirebaseUser>() {
+            @Override
+            public void onChanged(FirebaseUser firebaseUser) {
+                if(firebaseUser != null){
+                    Intent intent = SelectionPerformersActivity.newIntentAnonymous(
+                            RegisterUserActivity.this,
+                            true
+                    );
+                    Toast.makeText(
+                            RegisterUserActivity.this,
+                            MESSAGE_FOR_ANONYMOUS_REGISTER,
+                            Toast.LENGTH_LONG
+                    ).show();
                     startActivity(intent);
                     finish();
                 }

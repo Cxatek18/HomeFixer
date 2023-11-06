@@ -23,7 +23,6 @@ public class SelectionPerformerViewModel extends ViewModel {
     }
 
     public void deleteUser(){
-        auth.signOut();
         auth.getCurrentUser().delete();
     }
 }

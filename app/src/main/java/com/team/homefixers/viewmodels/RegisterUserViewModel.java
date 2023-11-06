@@ -1,5 +1,7 @@
 package com.team.homefixers.viewmodels;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -22,13 +24,20 @@ public class RegisterUserViewModel extends ViewModel {
 
     private MutableLiveData<String> error = new MutableLiveData<>();
     private MutableLiveData<FirebaseUser> user = new MutableLiveData<>();
+    private MutableLiveData<FirebaseUser> anonymousUser = new MutableLiveData<>();
 
     public RegisterUserViewModel() {
         auth = FirebaseAuth.getInstance();
         auth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() != null){
+                Log.d("RegisterUserViewModel", String.valueOf(firebaseAuth.getCurrentUser()));
+                if(firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isAnonymous()){
+                    Log.d("RegisterUserViewModel", "Anonymous");
+                    anonymousUser.setValue(firebaseAuth.getCurrentUser());
+                }
+                if(firebaseAuth.getCurrentUser() != null && !firebaseAuth.getCurrentUser().isAnonymous()){
+                    Log.d("RegisterUserViewModel", "NO anonymous");
                     user.setValue(firebaseAuth.getCurrentUser());
                 }
             }
@@ -36,6 +45,10 @@ public class RegisterUserViewModel extends ViewModel {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         usersReference = firebaseDatabase.getReference("Users");
+    }
+
+    public LiveData<FirebaseUser> getAnonymousUser() {
+        return anonymousUser;
     }
 
     public LiveData<String> getError() {

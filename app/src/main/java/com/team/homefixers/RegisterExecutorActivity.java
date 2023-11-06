@@ -38,6 +38,9 @@ public class RegisterExecutorActivity extends AppCompatActivity {
 
     private static final String MESSAGE_PRICE_LESS_ZERO = "Цена не может быть меньше 0";
 
+    private static final String MESSAGE_FOR_ANONYMOUS_REGISTER_EXECUTOR = "Вы не можете " +
+            "воспользоваться регистарацией, так как находитесь в анонимном аккаунте";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +70,23 @@ public class RegisterExecutorActivity extends AppCompatActivity {
                 Intent intent = SelectionPerformersActivity.newIntent(
                         RegisterExecutorActivity.this
                 );
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        viewModel.getAnonymousUser().observe(this, new Observer<FirebaseUser>() {
+            @Override
+            public void onChanged(FirebaseUser firebaseUser) {
+                Intent intent = SelectionPerformersActivity.newIntentAnonymous(
+                        RegisterExecutorActivity.this,
+                        true
+                );
+                Toast.makeText(
+                        RegisterExecutorActivity.this,
+                        MESSAGE_FOR_ANONYMOUS_REGISTER_EXECUTOR,
+                        Toast.LENGTH_LONG
+                ).show();
                 startActivity(intent);
                 finish();
             }

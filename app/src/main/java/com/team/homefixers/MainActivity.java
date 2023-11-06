@@ -99,6 +99,20 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        viewModelAnonymous.getAnonymousUser().observe(this, new Observer<FirebaseUser>() {
+            @Override
+            public void onChanged(FirebaseUser firebaseUser) {
+                if(firebaseUser != null){
+                    Intent intent = SelectionPerformersActivity.newIntentAnonymous(
+                            MainActivity.this,
+                            true
+                    );
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
     }
 
     @Override
