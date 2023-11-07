@@ -31,13 +31,10 @@ public class RegisterUserViewModel extends ViewModel {
         auth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                Log.d("RegisterUserViewModel", String.valueOf(firebaseAuth.getCurrentUser()));
                 if(firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isAnonymous()){
-                    Log.d("RegisterUserViewModel", "Anonymous");
                     anonymousUser.setValue(firebaseAuth.getCurrentUser());
                 }
                 if(firebaseAuth.getCurrentUser() != null && !firebaseAuth.getCurrentUser().isAnonymous()){
-                    Log.d("RegisterUserViewModel", "NO anonymous");
                     user.setValue(firebaseAuth.getCurrentUser());
                 }
             }

@@ -1,9 +1,8 @@
 package com.team.homefixers.viewmodels;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -15,10 +14,14 @@ public class SelectionPerformerViewModel extends ViewModel {
 
     public SelectionPerformerViewModel() {
         auth = FirebaseAuth.getInstance();
-        user.setValue(auth.getCurrentUser());
+    }
+
+    public LiveData<FirebaseUser> getUser() {
+        return user;
     }
 
     public void logout(){
+        user.setValue(auth.getCurrentUser());
         auth.signOut();
     }
 

@@ -30,6 +30,7 @@
     <string name="text_executor_contract">Работаете по договору</string>
     <string name="text_executor_guarantee">Есть ли гарантия на ваши услуги</string>
     <string name="text_executor_urgency">Срочные заказы</string>
+    <string name="signin_account_executor_text">Вход в акаунт как исполнитель</string>
 
     <array name="array_specialization">
         <item>Сантехник</item>

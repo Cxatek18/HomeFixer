@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,18 +26,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewSigninExecutor;
 
     private MainViewModel viewModel;
-    private AuthorizationForAnonymousViewModel viewModelAnonymous;
-    private Boolean isAuthorizedAnonymous;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-        viewModelAnonymous = new ViewModelProvider(this).get(
-                AuthorizationForAnonymousViewModel.class
-        );
-        observeAnonymousViewModel();
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        observeMainViewModel();
         onClickButtons();
     }
 
@@ -46,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = RegisterUserActivity.newIntent(MainActivity.this);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -55,14 +51,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = LoginUserActivity.newIntent(MainActivity.this);
                 startActivity(intent);
-                finish();
             }
         });
 
         buttonSignInAnonimUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewModelAnonymous.signInAnonymousUser();
+                viewModel.signInAnonymousUser();
             }
         });
 
@@ -73,10 +68,36 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        textViewSigninExecutor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = LoginExecutorActivity.newIntent(
+                        MainActivity.this
+                );
+                startActivity(intent);
+            }
+        });
     }
 
-    private void observeAnonymousViewModel(){
-        viewModelAnonymous.getError().observe(this, new Observer<String>() {
+    private void observeMainViewModel(){
+        viewModel.getUser().observe(this, new Observer<FirebaseUser>() {
+            @Override
+            public void onChanged(FirebaseUser firebaseUser) {
+                if(firebaseUser != null && !firebaseUser.isAnonymous()){
+                    Intent intent = SelectionPerformersActivity.newIntent(MainActivity.this);
+                    startActivity(intent);
+                }else if(firebaseUser != null && firebaseUser.isAnonymous()){
+                    Intent intent = SelectionPerformersActivity.newIntentAnonymous(
+                            MainActivity.this,
+                            true
+                    );
+                    startActivity(intent);
+                }
+            }
+        });
+
+        viewModel.getError().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String errorMessage) {
                 Toast.makeText(
@@ -86,49 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 ).show();
             }
         });
-
-        viewModelAnonymous.getIsAuthorizedAnonymous().observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean isAnonymous) {
-                isAuthorizedAnonymous = isAnonymous;
-                Intent intent = SelectionPerformersActivity.newIntentAnonymous(
-                        MainActivity.this,
-                        isAuthorizedAnonymous
-                );
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        viewModelAnonymous.getAnonymousUser().observe(this, new Observer<FirebaseUser>() {
-            @Override
-            public void onChanged(FirebaseUser firebaseUser) {
-                if(firebaseUser != null){
-                    Intent intent = SelectionPerformersActivity.newIntentAnonymous(
-                            MainActivity.this,
-                            true
-                    );
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        });
-    }
-
-    @Override
-    protected void onResume() {
-        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        viewModel.getUser().observe(this, new Observer<FirebaseUser>() {
-            @Override
-            public void onChanged(FirebaseUser firebaseUser) {
-                if(!firebaseUser.isAnonymous() && firebaseUser != null){
-                    Intent intent = SelectionPerformersActivity.newIntent(MainActivity.this);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        });
-        super.onResume();
     }
 
     private void initViews(){

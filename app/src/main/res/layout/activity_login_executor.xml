@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginExecutorActivity">
+
+    <TextView
+        android:id="@+id/textViewLoginExecutor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/signin_account_executor_text"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/first_main_color"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextLoginEmailExecutor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="25dp"
+        android:hint="@string/hint_text_email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLoginExecutor" />
+
+    <EditText
+        android:id="@+id/editTextLoginPasswordExecutor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="25dp"
+        android:hint="@string/hint_text_password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLoginEmailExecutor" />
+
+    <TextView
+        android:id="@+id/textViewLoginForgotPasswordExecutor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_login_forgot_password"
+        android:textColor="#9E808080"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/editTextLoginPasswordExecutor"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLoginPasswordExecutor" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonLoginExecutor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/background_btn_2"
+        android:text="@string/button_text_sign_in_user"
+        android:textAllCaps="true"
+        android:textColor="@color/first_main_color"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLoginForgotPasswordExecutor" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,8 @@
 package com.team.homefixers.viewmodels;
 
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -21,14 +23,15 @@ public class AuthorizationForAnonymousViewModel extends ViewModel {
 
     public AuthorizationForAnonymousViewModel() {
         anonymousAuth = FirebaseAuth.getInstance();
-        anonymousAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isAnonymous()){
-                    anonymousUser.setValue(firebaseAuth.getCurrentUser());
-                }
-            }
-        });
+//        anonymousAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                Log.d("AuthorizationForAnonymousViewModel", "AuthorizationForAnonymousViewModel");
+//                if(firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isAnonymous()){
+//                    anonymousUser.setValue(firebaseAuth.getCurrentUser());
+//                }
+//            }
+//        });
     }
 
     public LiveData<String> getError() {
@@ -47,7 +50,7 @@ public class AuthorizationForAnonymousViewModel extends ViewModel {
         anonymousAuth.signInAnonymously().addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                isAuthorizedAnonymous.setValue(true);
+                anonymousUser.setValue(anonymousAuth.getCurrentUser());
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
