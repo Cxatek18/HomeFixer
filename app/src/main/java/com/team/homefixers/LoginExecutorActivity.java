@@ -92,6 +92,14 @@ public class LoginExecutorActivity extends AppCompatActivity {
                 viewModel.loginExecutor(email, password);
             }
         });
+
+        textViewLoginForgotPasswordExecutor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = ForgotPasswordExecutorActivity.newIntent(LoginExecutorActivity.this);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initViews(){
