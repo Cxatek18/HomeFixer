@@ -53,20 +53,14 @@ public class LoginExecutorActivity extends AppCompatActivity {
         viewModel.getExecutor().observe(this, new Observer<FirebaseUser>() {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
-                if(firebaseUser != null){
-                    Intent intent = SelectionPerformersActivity.newIntent(
-                            LoginExecutorActivity.this
+                if(firebaseUser != null && !firebaseUser.isAnonymous()){
+                    Intent intent = SelectionPerformersActivity.newIntentExecutor(
+                            LoginExecutorActivity.this,
+                            true
                     );
                     startActivity(intent);
                     finish();
-                }
-            }
-        });
-
-        viewModel.getAnonymousUser().observe(this, new Observer<FirebaseUser>() {
-            @Override
-            public void onChanged(FirebaseUser firebaseUser) {
-                if(firebaseUser != null){
+                } else if(firebaseUser != null && firebaseUser.isAnonymous()){
                     Intent intent = SelectionPerformersActivity.newIntentAnonymous(
                             LoginExecutorActivity.this,
                             true

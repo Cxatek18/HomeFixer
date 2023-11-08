@@ -17,17 +17,13 @@ public class LoginExecutorViewModel extends ViewModel {
 
     private MutableLiveData<FirebaseUser> executor = new MutableLiveData<>();
     private MutableLiveData<String> error = new MutableLiveData<>();
-    private MutableLiveData<FirebaseUser> anonymousUser = new MutableLiveData<>();
 
     public LoginExecutorViewModel() {
         authExecutor = FirebaseAuth.getInstance();
         authExecutor.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isAnonymous()){
-                    anonymousUser.setValue(firebaseAuth.getCurrentUser());
-                }
-                if(firebaseAuth.getCurrentUser() != null && !firebaseAuth.getCurrentUser().isAnonymous()){
+                if(firebaseAuth.getCurrentUser() != null){
                     executor.setValue(firebaseAuth.getCurrentUser());
                 }
             }
@@ -40,10 +36,6 @@ public class LoginExecutorViewModel extends ViewModel {
 
     public LiveData<String> getError() {
         return error;
-    }
-
-    public LiveData<FirebaseUser> getAnonymousUser() {
-        return anonymousUser;
     }
 
     public void loginExecutor(String email, String password){

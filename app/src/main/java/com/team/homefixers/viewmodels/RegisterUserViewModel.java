@@ -24,17 +24,13 @@ public class RegisterUserViewModel extends ViewModel {
 
     private MutableLiveData<String> error = new MutableLiveData<>();
     private MutableLiveData<FirebaseUser> user = new MutableLiveData<>();
-    private MutableLiveData<FirebaseUser> anonymousUser = new MutableLiveData<>();
 
     public RegisterUserViewModel() {
         auth = FirebaseAuth.getInstance();
         auth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isAnonymous()){
-                    anonymousUser.setValue(firebaseAuth.getCurrentUser());
-                }
-                if(firebaseAuth.getCurrentUser() != null && !firebaseAuth.getCurrentUser().isAnonymous()){
+                if(firebaseAuth.getCurrentUser() != null){
                     user.setValue(firebaseAuth.getCurrentUser());
                 }
             }
@@ -42,10 +38,6 @@ public class RegisterUserViewModel extends ViewModel {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         usersReference = firebaseDatabase.getReference("Users");
-    }
-
-    public LiveData<FirebaseUser> getAnonymousUser() {
-        return anonymousUser;
     }
 
     public LiveData<String> getError() {

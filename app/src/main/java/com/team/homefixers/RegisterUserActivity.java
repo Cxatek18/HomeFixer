@@ -100,20 +100,13 @@ public class RegisterUserActivity extends AppCompatActivity {
         viewModel.getUser().observe(this, new Observer<FirebaseUser>() {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
-                if(firebaseUser != null){
+                if(firebaseUser != null && !firebaseUser.isAnonymous()){
                     Intent intent = SelectionPerformersActivity.newIntent(
                             RegisterUserActivity.this
                     );
                     startActivity(intent);
                     finish();
-                }
-            }
-        });
-
-        viewModel.getAnonymousUser().observe(this, new Observer<FirebaseUser>() {
-            @Override
-            public void onChanged(FirebaseUser firebaseUser) {
-                if(firebaseUser != null){
+                } else if(firebaseUser != null && firebaseUser.isAnonymous()){
                     Intent intent = SelectionPerformersActivity.newIntentAnonymous(
                             RegisterUserActivity.this,
                             true

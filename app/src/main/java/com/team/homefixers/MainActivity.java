@@ -85,8 +85,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser != null && !firebaseUser.isAnonymous()){
-                    Intent intent = SelectionPerformersActivity.newIntent(MainActivity.this);
-                    startActivity(intent);
+                    viewModel.getIsExecutor().observe(MainActivity.this, new Observer<Boolean>() {
+                        @Override
+                        public void onChanged(Boolean userIsExecutor) {
+                            Intent intent;
+                            if(userIsExecutor){
+                                intent = SelectionPerformersActivity.newIntentExecutor(
+                                        MainActivity.this,
+                                        true
+                                );
+                            }else{
+                                intent = SelectionPerformersActivity.newIntent(MainActivity.this);
+                            }
+                            startActivity(intent);
+                        }
+                    });
                 }else if(firebaseUser != null && firebaseUser.isAnonymous()){
                     Intent intent = SelectionPerformersActivity.newIntentAnonymous(
                             MainActivity.this,

@@ -22,7 +22,6 @@ public class RegisterExecutorViewModel extends ViewModel {
 
     private MutableLiveData<FirebaseUser> user = new MutableLiveData<>();
     private MutableLiveData<String> error = new MutableLiveData<>();
-    private MutableLiveData<FirebaseUser> anonymousUser = new MutableLiveData<>();
 
     private static final String ERROR_MESSAGE = "Произошла ошибка во время регистрации";
 
@@ -31,10 +30,7 @@ public class RegisterExecutorViewModel extends ViewModel {
         auth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isAnonymous()){
-                    anonymousUser.setValue(firebaseAuth.getCurrentUser());
-                }
-                if (firebaseAuth.getCurrentUser() != null && !firebaseAuth.getCurrentUser().isAnonymous()) {
+                if(firebaseAuth.getCurrentUser() != null){
                     user.setValue(firebaseAuth.getCurrentUser());
                 }
             }
@@ -50,10 +46,6 @@ public class RegisterExecutorViewModel extends ViewModel {
 
     public LiveData<String> getError() {
         return error;
-    }
-
-    public LiveData<FirebaseUser> getAnonymousUser() {
-        return anonymousUser;
     }
 
     public void signUpExecutor(

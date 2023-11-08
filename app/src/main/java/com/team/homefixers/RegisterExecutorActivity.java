@@ -67,28 +67,26 @@ public class RegisterExecutorActivity extends AppCompatActivity {
         viewModel.getUser().observe(this, new Observer<FirebaseUser>() {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
-                Intent intent = SelectionPerformersActivity.newIntent(
-                        RegisterExecutorActivity.this
-                );
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        viewModel.getAnonymousUser().observe(this, new Observer<FirebaseUser>() {
-            @Override
-            public void onChanged(FirebaseUser firebaseUser) {
-                Intent intent = SelectionPerformersActivity.newIntentAnonymous(
+                if(firebaseUser != null && !firebaseUser.isAnonymous()){
+                    Intent intent = SelectionPerformersActivity.newIntentExecutor(
+                            RegisterExecutorActivity.this,
+                            true
+                    );
+                    startActivity(intent);
+                    finish();
+                }else if(firebaseUser != null && firebaseUser.isAnonymous()){
+                    Intent intent = SelectionPerformersActivity.newIntentAnonymous(
                         RegisterExecutorActivity.this,
                         true
-                );
-                Toast.makeText(
-                        RegisterExecutorActivity.this,
-                        MESSAGE_FOR_ANONYMOUS_REGISTER_EXECUTOR,
-                        Toast.LENGTH_LONG
-                ).show();
-                startActivity(intent);
-                finish();
+                    );
+                    Toast.makeText(
+                            RegisterExecutorActivity.this,
+                            MESSAGE_FOR_ANONYMOUS_REGISTER_EXECUTOR,
+                            Toast.LENGTH_LONG
+                    ).show();
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
