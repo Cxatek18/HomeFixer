@@ -52,8 +52,16 @@ public class MainActivity extends AppCompatActivity {
         buttonSignInUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = LoginUserActivity.newIntent(MainActivity.this);
-                startActivity(intent);
+                if(!isNoUser){
+                    Intent intent = LoginUserActivity.newIntent(
+                            MainActivity.this,
+                            false
+                    );
+                    startActivity(intent);
+                }else{
+                    Intent intent = LoginUserActivity.newIntent(MainActivity.this);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -96,11 +104,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser != null && !firebaseUser.isAnonymous()){
+                    isNoUser = false;
                     observeIsExecutorOrUser();
-                    isNoUser = false;
                 }else if(firebaseUser != null && firebaseUser.isAnonymous()){
-                    observeIsExecutorOrAnonymous();
                     isNoUser = false;
+                    observeIsExecutorOrAnonymous();
                 }else{
                     isNoUser = true;
                 }

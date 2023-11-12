@@ -30,6 +30,7 @@ public class LoginUserActivity extends AppCompatActivity {
     private LoginUserViewModel viewModel;
 
     private final static String IS_NO_USER_IN_SYSTEM = "NO_USER_IN_SYSTEM";
+    private boolean isNoUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class LoginUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_user);
         initViews();
         viewModel = new ViewModelProvider(this).get(LoginUserViewModel.class);
+        isNoUser = getIntent().getBooleanExtra(IS_NO_USER_IN_SYSTEM, true);
         observeViewModel();
         onClickButtons();
     }
@@ -77,10 +79,14 @@ public class LoginUserActivity extends AppCompatActivity {
         viewModel.getUser().observe(this, new Observer<FirebaseUser>() {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
-                if(firebaseUser != null && !firebaseUser.isAnonymous()){
-                    observeIsExecutorOrUser();
-                }else if(firebaseUser != null && firebaseUser.isAnonymous()){
-                    observeIsExecutorOrAnonymous();
+                if(firebaseUser != null && !isNoUser){
+                    
+                }else{
+                    if(firebaseUser != null && !firebaseUser.isAnonymous()){
+                        observeIsExecutorOrUser();
+                    }else if(firebaseUser != null && firebaseUser.isAnonymous()){
+                        observeIsExecutorOrAnonymous();
+                    }
                 }
             }
         });
