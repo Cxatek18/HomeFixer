@@ -45,6 +45,10 @@ public class Executor {
         this.urgency = urgency;
     }
 
+    public Executor() {
+
+    }
+
     public String getId() {
         return id;
     }

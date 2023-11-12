@@ -27,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     private MainViewModel viewModel;
 
+    private boolean isNoUser = true;
+    private static final String TEXT_IS_USER_IN_ACCOUNT = "Вы уже находитесь в аккаунте";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +60,15 @@ public class MainActivity extends AppCompatActivity {
         buttonSignInAnonimUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewModel.signInAnonymousUser();
+                if(isNoUser){
+                    viewModel.signInAnonymousUser();
+                }else{
+                    Toast.makeText(
+                            MainActivity.this,
+                            TEXT_IS_USER_IN_ACCOUNT,
+                            Toast.LENGTH_LONG
+                    ).show();
+                }
             }
         });
 
@@ -85,27 +96,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser != null && !firebaseUser.isAnonymous()){
-                    viewModel.getIsExecutor().observe(MainActivity.this, new Observer<Boolean>() {
-                        @Override
-                        public void onChanged(Boolean userIsExecutor) {
-                            Intent intent;
-                            if(userIsExecutor){
-                                intent = SelectionPerformersActivity.newIntentExecutor(
-                                        MainActivity.this,
-                                        true
-                                );
-                            }else{
-                                intent = SelectionPerformersActivity.newIntent(MainActivity.this);
-                            }
-                            startActivity(intent);
-                        }
-                    });
+                    observeIsExecutorOrUser();
+                    isNoUser = false;
                 }else if(firebaseUser != null && firebaseUser.isAnonymous()){
-                    Intent intent = SelectionPerformersActivity.newIntentAnonymous(
-                            MainActivity.this,
-                            true
-                    );
-                    startActivity(intent);
+                    observeIsExecutorOrAnonymous();
+                    isNoUser = false;
+                }else{
+                    isNoUser = true;
                 }
             }
         });
@@ -118,6 +115,45 @@ public class MainActivity extends AppCompatActivity {
                         errorMessage,
                         Toast.LENGTH_SHORT
                 ).show();
+            }
+        });
+    }
+
+    private void observeIsExecutorOrUser(){
+        viewModel.getIsExecutor().observe(MainActivity.this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean userIsExecutor) {
+                Intent intent;
+                if(userIsExecutor){
+                    intent = SelectionPerformersActivity.newIntentExecutor(
+                            MainActivity.this,
+                            true
+                    );
+                }else{
+                    intent = SelectionPerformersActivity.newIntent(MainActivity.this);
+                }
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void observeIsExecutorOrAnonymous(){
+        viewModel.getIsExecutor().observe(MainActivity.this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean userIsExecutor) {
+                Intent intent;
+                if(userIsExecutor){
+                    intent = SelectionPerformersActivity.newIntentExecutor(
+                            MainActivity.this,
+                            true
+                    );
+                }else{
+                    intent = SelectionPerformersActivity.newIntentAnonymous(
+                            MainActivity.this,
+                            true
+                    );
+                }
+                startActivity(intent);
             }
         });
     }

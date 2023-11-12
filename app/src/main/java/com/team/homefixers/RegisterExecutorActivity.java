@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -68,25 +69,57 @@ public class RegisterExecutorActivity extends AppCompatActivity {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser != null && !firebaseUser.isAnonymous()){
-                    Intent intent = SelectionPerformersActivity.newIntentExecutor(
-                            RegisterExecutorActivity.this,
-                            true
-                    );
-                    startActivity(intent);
-                    finish();
+                    observeIsExecutorOrUser();
                 }else if(firebaseUser != null && firebaseUser.isAnonymous()){
-                    Intent intent = SelectionPerformersActivity.newIntentAnonymous(
-                        RegisterExecutorActivity.this,
-                        true
-                    );
+                    observeIsExecutorOrAnonymous();
                     Toast.makeText(
                             RegisterExecutorActivity.this,
                             MESSAGE_FOR_ANONYMOUS_REGISTER_EXECUTOR,
                             Toast.LENGTH_LONG
                     ).show();
-                    startActivity(intent);
-                    finish();
+
                 }
+            }
+        });
+    }
+
+    private void observeIsExecutorOrUser(){
+        viewModel.getIsExecutor().observe(RegisterExecutorActivity.this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean userIsExecutor) {
+                Intent intent;
+                if(userIsExecutor){
+                    intent = SelectionPerformersActivity.newIntentExecutor(
+                            RegisterExecutorActivity.this,
+                            true
+                    );
+                }else{
+                    intent = SelectionPerformersActivity.newIntent(RegisterExecutorActivity.this);
+                }
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    private void observeIsExecutorOrAnonymous(){
+        viewModel.getIsExecutor().observe(RegisterExecutorActivity.this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean userIsExecutor) {
+                Intent intent;
+                if(userIsExecutor){
+                    intent = SelectionPerformersActivity.newIntentExecutor(
+                            RegisterExecutorActivity.this,
+                            true
+                    );
+                }else{
+                    intent = SelectionPerformersActivity.newIntentAnonymous(
+                            RegisterExecutorActivity.this,
+                            true
+                    );
+                }
+                startActivity(intent);
+                finish();
             }
         });
     }

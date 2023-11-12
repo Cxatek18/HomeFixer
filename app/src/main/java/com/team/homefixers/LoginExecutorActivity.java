@@ -54,25 +54,57 @@ public class LoginExecutorActivity extends AppCompatActivity {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser != null && !firebaseUser.isAnonymous()){
-                    Intent intent = SelectionPerformersActivity.newIntentExecutor(
-                            LoginExecutorActivity.this,
-                            true
-                    );
-                    startActivity(intent);
-                    finish();
+                    observeIsExecutorOrUser();
                 } else if(firebaseUser != null && firebaseUser.isAnonymous()){
-                    Intent intent = SelectionPerformersActivity.newIntentAnonymous(
-                            LoginExecutorActivity.this,
-                            true
-                    );
+                    observeIsExecutorOrAnonymous();
                     Toast.makeText(
                             LoginExecutorActivity.this,
                             MESSAGE_FOR_ANONYMOUS_LOGIN,
                             Toast.LENGTH_LONG
                     ).show();
-                    startActivity(intent);
                     finish();
                 }
+            }
+        });
+    }
+
+    private void observeIsExecutorOrUser(){
+        viewModel.getIsExecutor().observe(LoginExecutorActivity.this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean userIsExecutor) {
+                Intent intent;
+                if(userIsExecutor){
+                    intent = SelectionPerformersActivity.newIntentExecutor(
+                            LoginExecutorActivity.this,
+                            true
+                    );
+                }else{
+                    intent = SelectionPerformersActivity.newIntent(LoginExecutorActivity.this);
+                }
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    private void observeIsExecutorOrAnonymous(){
+        viewModel.getIsExecutor().observe(LoginExecutorActivity.this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean userIsExecutor) {
+                Intent intent;
+                if(userIsExecutor){
+                    intent = SelectionPerformersActivity.newIntentExecutor(
+                            LoginExecutorActivity.this,
+                            true
+                    );
+                }else{
+                    intent = SelectionPerformersActivity.newIntentAnonymous(
+                            LoginExecutorActivity.this,
+                            true
+                    );
+                }
+                startActivity(intent);
+                finish();
             }
         });
     }

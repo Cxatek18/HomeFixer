@@ -9,7 +9,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class SelectionPerformerViewModel extends ViewModel {
 
     private FirebaseAuth auth;
-
     private MutableLiveData<FirebaseUser> user = new MutableLiveData<>();
 
     public SelectionPerformerViewModel() {
@@ -23,9 +22,5 @@ public class SelectionPerformerViewModel extends ViewModel {
     public void logout(){
         user.setValue(auth.getCurrentUser());
         auth.signOut();
-    }
-
-    public void deleteUser(){
-        auth.getCurrentUser().delete();
     }
 }

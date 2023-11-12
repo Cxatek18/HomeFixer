@@ -29,8 +29,7 @@ public class LoginUserActivity extends AppCompatActivity {
 
     private LoginUserViewModel viewModel;
 
-    private static final String MESSAGE_FOR_ANONYMOUS_LOGIN = "Вы не можете войти, " +
-            "так как находитесь в анонимном аккаунте";
+    private final static String IS_NO_USER_IN_SYSTEM = "NO_USER_IN_SYSTEM";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,21 +78,51 @@ public class LoginUserActivity extends AppCompatActivity {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser != null && !firebaseUser.isAnonymous()){
-                    Intent intent = SelectionPerformersActivity.newIntent(LoginUserActivity.this);
-                    startActivity(intent);
-                    finish();
+                    observeIsExecutorOrUser();
                 }else if(firebaseUser != null && firebaseUser.isAnonymous()){
-                    Intent intent = SelectionPerformersActivity.newIntentAnonymous(
-                            LoginUserActivity.this, true
-                    );
-                    Toast.makeText(
-                            LoginUserActivity.this,
-                            MESSAGE_FOR_ANONYMOUS_LOGIN,
-                            Toast.LENGTH_LONG
-                    ).show();
-                    startActivity(intent);
-                    finish();
+                    observeIsExecutorOrAnonymous();
                 }
+            }
+        });
+    }
+
+    private void observeIsExecutorOrUser(){
+        viewModel.getIsExecutor().observe(LoginUserActivity.this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean userIsExecutor) {
+                Intent intent;
+                if(userIsExecutor){
+                    intent = SelectionPerformersActivity.newIntentExecutor(
+                            LoginUserActivity.this,
+                            true
+                    );
+                }else{
+                    intent = SelectionPerformersActivity.newIntent(LoginUserActivity.this);
+                }
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    private void observeIsExecutorOrAnonymous(){
+        viewModel.getIsExecutor().observe(LoginUserActivity.this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean userIsExecutor) {
+                Intent intent;
+                if(userIsExecutor){
+                    intent = SelectionPerformersActivity.newIntentExecutor(
+                            LoginUserActivity.this,
+                            true
+                    );
+                }else{
+                    intent = SelectionPerformersActivity.newIntentAnonymous(
+                            LoginUserActivity.this,
+                            true
+                    );
+                }
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -135,6 +164,12 @@ public class LoginUserActivity extends AppCompatActivity {
 
     public static Intent newIntent(Context context){
         Intent intent = new Intent(context, LoginUserActivity.class);
+        return intent;
+    }
+
+    public static Intent newIntent(Context context, boolean isNoUser){
+        Intent intent = new Intent(context, LoginUserActivity.class);
+        intent.putExtra(IS_NO_USER_IN_SYSTEM, isNoUser);
         return intent;
     }
 }

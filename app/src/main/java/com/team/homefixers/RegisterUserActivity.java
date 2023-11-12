@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -101,24 +102,56 @@ public class RegisterUserActivity extends AppCompatActivity {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser != null && !firebaseUser.isAnonymous()){
-                    Intent intent = SelectionPerformersActivity.newIntent(
-                            RegisterUserActivity.this
-                    );
-                    startActivity(intent);
-                    finish();
+                    observeIsExecutorOrUser();
                 } else if(firebaseUser != null && firebaseUser.isAnonymous()){
-                    Intent intent = SelectionPerformersActivity.newIntentAnonymous(
-                            RegisterUserActivity.this,
-                            true
-                    );
+                    observeIsExecutorOrAnonymous();
                     Toast.makeText(
                             RegisterUserActivity.this,
                             MESSAGE_FOR_ANONYMOUS_REGISTER,
                             Toast.LENGTH_LONG
                     ).show();
-                    startActivity(intent);
-                    finish();
                 }
+            }
+        });
+    }
+
+    private void observeIsExecutorOrUser(){
+        viewModel.getIsExecutor().observe(RegisterUserActivity.this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean userIsExecutor) {
+                Intent intent;
+                if(userIsExecutor){
+                    intent = SelectionPerformersActivity.newIntentExecutor(
+                            RegisterUserActivity.this,
+                            true
+                    );
+                }else{
+                    intent = SelectionPerformersActivity.newIntent(RegisterUserActivity.this);
+                }
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    private void observeIsExecutorOrAnonymous(){
+        viewModel.getIsExecutor().observe(RegisterUserActivity.this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean userIsExecutor) {
+                Intent intent;
+                if(userIsExecutor){
+                    intent = SelectionPerformersActivity.newIntentExecutor(
+                            RegisterUserActivity.this,
+                            true
+                    );
+                }else{
+                    intent = SelectionPerformersActivity.newIntentAnonymous(
+                            RegisterUserActivity.this,
+                            true
+                    );
+                }
+                startActivity(intent);
+                finish();
             }
         });
     }
