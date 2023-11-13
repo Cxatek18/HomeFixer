@@ -41,6 +41,8 @@
     <string name="text_item_register_executor">Зарегестрироваться как исполнитель</string>
     <string name="text_item_login_executor">Войти как исполнитель</string>
     <string name="button_login_text">Войти</string>
+    <string name="text_link_telegram">Написать в Telegram</string>
+    <string name="text_link_vk">Написать в VK</string>
 
     <array name="array_specialization">
         <item>Сантехник</item>

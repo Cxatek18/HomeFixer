@@ -63,6 +63,9 @@ public class LoginUserActivity extends AppCompatActivity {
             Intent intent = LoginExecutorActivity.newIntent(LoginUserActivity.this);
             startActivity(intent);
             finish();
+        }else if(item.getItemId() == R.id.itemMenuHelp){
+            Intent intent = HelpActivity.newIntent(LoginUserActivity.this);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -230,6 +230,9 @@ public class RegisterExecutorActivity extends AppCompatActivity {
             Intent intent = MainActivity.newIntent(RegisterExecutorActivity.this);
             startActivity(intent);
             finish();
+        }else if(item.getItemId() == R.id.itemMenuHelp){
+            Intent intent = HelpActivity.newIntent(RegisterExecutorActivity.this);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

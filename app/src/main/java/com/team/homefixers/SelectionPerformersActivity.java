@@ -75,6 +75,9 @@ public class SelectionPerformersActivity extends AppCompatActivity {
                 startActivity(intent);
                 viewModel.logout();
                 finish();
+            }else if(item.getItemId() == R.id.itemMenuHelp){
+                Intent intent = HelpActivity.newIntent(SelectionPerformersActivity.this);
+                startActivity(intent);
             }
         } else if (executor) {
             if (item.getItemId() == R.id.itemMenuLogout) {
@@ -86,6 +89,9 @@ public class SelectionPerformersActivity extends AppCompatActivity {
                 Intent intent = ForgotPasswordExecutorActivity.newIntent(SelectionPerformersActivity.this);
                 startActivity(intent);
                 finish();
+            }else if(item.getItemId() == R.id.itemMenuHelp){
+                Intent intent = HelpActivity.newIntent(SelectionPerformersActivity.this);
+                startActivity(intent);
             }
         } else {
             if (item.getItemId() == R.id.itemMenuLogout) {
@@ -93,11 +99,13 @@ public class SelectionPerformersActivity extends AppCompatActivity {
                 startActivity(intent);
                 viewModel.logout();
                 finish();
-            }
-            if (item.getItemId() == R.id.itemMenuChangePassword) {
+            }else if(item.getItemId() == R.id.itemMenuChangePassword){
                 Intent intent = ForgotPasswordActivity.newIntent(SelectionPerformersActivity.this);
                 startActivity(intent);
                 finish();
+            }else if(item.getItemId() == R.id.itemMenuHelp){
+                Intent intent = HelpActivity.newIntent(SelectionPerformersActivity.this);
+                startActivity(intent);
             }
         }
         return super.onOptionsItemSelected(item);

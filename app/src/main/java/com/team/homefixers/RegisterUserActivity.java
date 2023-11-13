@@ -163,6 +163,9 @@ public class RegisterUserActivity extends AppCompatActivity {
             Intent intent = RegisterExecutorActivity.newIntent(RegisterUserActivity.this);
             startActivity(intent);
             finish();
+        }else if(item.getItemId() == R.id.itemMenuHelp){
+            Intent intent = HelpActivity.newIntent(RegisterUserActivity.this);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
