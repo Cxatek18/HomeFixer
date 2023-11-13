@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/itemMenuSignin"
-        android:title="@string/button_text_sign_in_user" />
-    <item
-        android:id="@+id/itemMenuLoginExecutor"
-        android:title="@string/text_menu_login_executor" />
-    <item
         android:id="@+id/itemMenuRegisterExecutor"
-        android:title="@string/text_item_register_executor" />
+        android:title="@string/button_text_register_executor" />
+    <item
+        android:id="@+id/itemMenuRegisterUser"
+        android:title="@string/text_menu_register_user" />
+    <item
+        android:id="@+id/itemMenuLoginUser"
+        android:title="@string/text_menu_login_user" />
     <item
         android:id="@+id/itemMenuHelp"
         android:title="@string/text_help" />

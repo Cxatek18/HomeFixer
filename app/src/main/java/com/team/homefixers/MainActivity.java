@@ -46,22 +46,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = RegisterUserActivity.newIntent(MainActivity.this);
                 startActivity(intent);
+                finish();
             }
         });
 
         buttonSignInUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!isNoUser){
-                    Intent intent = LoginUserActivity.newIntent(
-                            MainActivity.this,
-                            false
-                    );
-                    startActivity(intent);
-                }else{
-                    Intent intent = LoginUserActivity.newIntent(MainActivity.this);
-                    startActivity(intent);
-                }
+                Intent intent = LoginUserActivity.newIntent(MainActivity.this);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -70,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(isNoUser){
                     viewModel.signInAnonymousUser();
+
                 }else{
                     Toast.makeText(
                             MainActivity.this,
@@ -85,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = RegisterExecutorActivity.newIntent(MainActivity.this);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -95,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this
                 );
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -104,11 +101,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser != null && !firebaseUser.isAnonymous()){
-                    isNoUser = false;
                     observeIsExecutorOrUser();
-                }else if(firebaseUser != null && firebaseUser.isAnonymous()){
                     isNoUser = false;
+                }else if(firebaseUser != null && firebaseUser.isAnonymous()){
                     observeIsExecutorOrAnonymous();
+                    isNoUser = false;
                 }else{
                     isNoUser = true;
                 }
@@ -141,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     intent = SelectionPerformersActivity.newIntent(MainActivity.this);
                 }
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -162,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
                     );
                 }
                 startActivity(intent);
+                finish();
             }
         });
     }

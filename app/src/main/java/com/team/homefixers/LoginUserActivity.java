@@ -29,16 +29,12 @@ public class LoginUserActivity extends AppCompatActivity {
 
     private LoginUserViewModel viewModel;
 
-    private final static String IS_NO_USER_IN_SYSTEM = "NO_USER_IN_SYSTEM";
-    private boolean isNoUser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_user);
         initViews();
         viewModel = new ViewModelProvider(this).get(LoginUserViewModel.class);
-        isNoUser = getIntent().getBooleanExtra(IS_NO_USER_IN_SYSTEM, true);
         observeViewModel();
         onClickButtons();
     }
@@ -55,9 +51,16 @@ public class LoginUserActivity extends AppCompatActivity {
             Intent intent = MainActivity.newIntent(LoginUserActivity.this);
             startActivity(intent);
             finish();
-        }
-        if(item.getItemId() == R.id.itemMenuRegister){
+        }else if(item.getItemId() == R.id.itemMenuRegister){
             Intent intent = RegisterUserActivity.newIntent(LoginUserActivity.this);
+            startActivity(intent);
+            finish();
+        }else if(item.getItemId() == R.id.itemMenuRegisterExecutor){
+            Intent intent = RegisterExecutorActivity.newIntent(LoginUserActivity.this);
+            startActivity(intent);
+            finish();
+        }else if(item.getItemId() == R.id.itemMenuLoginExecutor){
+            Intent intent = LoginExecutorActivity.newIntent(LoginUserActivity.this);
             startActivity(intent);
             finish();
         }
@@ -79,14 +82,10 @@ public class LoginUserActivity extends AppCompatActivity {
         viewModel.getUser().observe(this, new Observer<FirebaseUser>() {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
-                if(firebaseUser != null && !isNoUser){
-                    
-                }else{
-                    if(firebaseUser != null && !firebaseUser.isAnonymous()){
-                        observeIsExecutorOrUser();
-                    }else if(firebaseUser != null && firebaseUser.isAnonymous()){
-                        observeIsExecutorOrAnonymous();
-                    }
+                if(firebaseUser != null && !firebaseUser.isAnonymous()){
+                    observeIsExecutorOrUser();
+                }else if(firebaseUser != null && firebaseUser.isAnonymous()){
+                    observeIsExecutorOrAnonymous();
                 }
             }
         });
@@ -170,12 +169,6 @@ public class LoginUserActivity extends AppCompatActivity {
 
     public static Intent newIntent(Context context){
         Intent intent = new Intent(context, LoginUserActivity.class);
-        return intent;
-    }
-
-    public static Intent newIntent(Context context, boolean isNoUser){
-        Intent intent = new Intent(context, LoginUserActivity.class);
-        intent.putExtra(IS_NO_USER_IN_SYSTEM, isNoUser);
         return intent;
     }
 }

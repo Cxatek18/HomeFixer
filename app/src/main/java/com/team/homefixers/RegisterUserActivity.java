@@ -43,27 +43,6 @@ public class RegisterUserActivity extends AppCompatActivity {
         onClickButtons();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_register, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.itemMenuLogout) {
-            Intent intent = MainActivity.newIntent(RegisterUserActivity.this);
-            startActivity(intent);
-            finish();
-        }
-        if(item.getItemId() == R.id.itemMenuSignin){
-            Intent intent = LoginUserActivity.newIntent(RegisterUserActivity.this);
-            startActivity(intent);
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void onClickButtons(){
         buttonRegRegisterUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,6 +137,34 @@ public class RegisterUserActivity extends AppCompatActivity {
 
     private String getFormattedString(EditText editText){
         return editText.getText().toString().trim();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_register, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.itemMenuLogout) {
+            Intent intent = MainActivity.newIntent(RegisterUserActivity.this);
+            startActivity(intent);
+            finish();
+        }else if(item.getItemId() == R.id.itemMenuSignin){
+            Intent intent = LoginUserActivity.newIntent(RegisterUserActivity.this);
+            startActivity(intent);
+            finish();
+        }else if(item.getItemId() == R.id.itemMenuLoginExecutor){
+            Intent intent = LoginExecutorActivity.newIntent(RegisterUserActivity.this);
+            startActivity(intent);
+            finish();
+        }else if(item.getItemId() == R.id.itemMenuRegisterExecutor){
+            Intent intent = RegisterExecutorActivity.newIntent(RegisterUserActivity.this);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initViews(){

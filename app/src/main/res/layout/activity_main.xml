@@ -43,7 +43,7 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/background_btn_1"
-        android:text="@string/button_text_sign_in_user"
+        android:text="@string/button_login_text"
         android:textAllCaps="true"
         android:textColor="@android:color/white"
         android:textSize="13sp"

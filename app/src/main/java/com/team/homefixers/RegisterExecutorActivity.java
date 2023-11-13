@@ -1,5 +1,6 @@
 package com.team.homefixers;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.Observer;
@@ -11,6 +12,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -201,6 +204,34 @@ public class RegisterExecutorActivity extends AppCompatActivity {
 
     private String getFormattedStringSinner(Spinner spinner){
         return spinner.getSelectedItem().toString().trim();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_register_executor, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.itemMenuRegisterUser){
+            Intent intent = RegisterUserActivity.newIntent(RegisterExecutorActivity.this);
+            startActivity(intent);
+            finish();
+        }else if(item.getItemId() == R.id.itemMenuLoginUser){
+            Intent intent = LoginUserActivity.newIntent(RegisterExecutorActivity.this);
+            startActivity(intent);
+            finish();
+        }else if(item.getItemId() == R.id.itemMenuLoginExecutor){
+            Intent intent = LoginExecutorActivity.newIntent(RegisterExecutorActivity.this);
+            startActivity(intent);
+            finish();
+        }else if(item.getItemId() == R.id.itemMenuLogout){
+            Intent intent = MainActivity.newIntent(RegisterExecutorActivity.this);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initViews(){

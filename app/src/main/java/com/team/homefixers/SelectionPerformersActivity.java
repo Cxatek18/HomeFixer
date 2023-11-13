@@ -120,4 +120,10 @@ public class SelectionPerformersActivity extends AppCompatActivity {
             });
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        finish();
+        super.onDestroy();
+    }
 }
