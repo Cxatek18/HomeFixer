@@ -43,6 +43,14 @@
     <string name="button_login_text">Войти</string>
     <string name="text_link_telegram">Написать в Telegram</string>
     <string name="text_link_vk">Написать в VK</string>
+    <string name="text_title_person_account">Ваш личный кабинет</string>
+    <string name="text_update_photo_person_account">Изменить фото</string>
+    <string name="text_hint_your_name">Ваше имя: %s</string>
+    <string name="text_hint_your_email">Ваш email: %s</string>
+    <string name="text_hint_your_city">Ваш город: %s</string>
+    <string name="text_hint_your_number_phone">Ваш номер телефона: %s</string>
+    <string name="text_update_info_person_account">Изменить информацию</string>
+    <string name="text_delete_person_account">Удалить аккаунт</string>
 
     <array name="array_specialization">
         <item>Сантехник</item>

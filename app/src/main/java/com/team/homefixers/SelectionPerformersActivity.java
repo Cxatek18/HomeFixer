@@ -104,6 +104,9 @@ public class SelectionPerformersActivity extends AppCompatActivity {
             }else if(item.getItemId() == R.id.itemMenuHelp){
                 Intent intent = HelpActivity.newIntent(SelectionPerformersActivity.this);
                 startActivity(intent);
+            }else if(item.getItemId() == R.id.itemMenuPersonalCabinet){
+                Intent intent = PersonalAccountActivity.newIntent(SelectionPerformersActivity.this);
+                startActivity(intent);
             }
         }
         return super.onOptionsItemSelected(item);
