@@ -88,7 +88,6 @@ public class SelectionPerformersActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.itemMenuChangePassword) {
                 Intent intent = ForgotPasswordExecutorActivity.newIntent(SelectionPerformersActivity.this);
                 startActivity(intent);
-                finish();
             }else if(item.getItemId() == R.id.itemMenuHelp){
                 Intent intent = HelpActivity.newIntent(SelectionPerformersActivity.this);
                 startActivity(intent);
@@ -102,7 +101,6 @@ public class SelectionPerformersActivity extends AppCompatActivity {
             }else if(item.getItemId() == R.id.itemMenuChangePassword){
                 Intent intent = ForgotPasswordActivity.newIntent(SelectionPerformersActivity.this);
                 startActivity(intent);
-                finish();
             }else if(item.getItemId() == R.id.itemMenuHelp){
                 Intent intent = HelpActivity.newIntent(SelectionPerformersActivity.this);
                 startActivity(intent);
