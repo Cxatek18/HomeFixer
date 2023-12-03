@@ -7,19 +7,20 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.team.homefixers.viewmodels.PersonalAccountViewModel;
 
 import java.util.Map;
 
 public class PersonalAccountActivity extends AppCompatActivity {
 
-    private ImageView photoPersonalAccountUser;
-    private AppCompatButton buttonUpdatePhotoPersonalAccountUser;
     private TextView textNamePersonalAccountUser;
     private TextView textEmailPersonalAccountUser;
     private TextView textCityPersonalAccountUser;
@@ -84,10 +85,6 @@ public class PersonalAccountActivity extends AppCompatActivity {
     }
 
     private void initViews(){
-        photoPersonalAccountUser = findViewById(R.id.photoPersonalAccountUser);
-        buttonUpdatePhotoPersonalAccountUser = findViewById(
-                R.id.buttonUpdatePhotoPersonalAccountUser
-        );
         textNamePersonalAccountUser = findViewById(R.id.textNamePersonalAccountUser);
         textEmailPersonalAccountUser = findViewById(R.id.textEmailPersonalAccountUser);
         textCityPersonalAccountUser = findViewById(R.id.textCityPersonalAccountUser);

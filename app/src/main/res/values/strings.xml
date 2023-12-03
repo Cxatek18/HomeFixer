@@ -51,6 +51,7 @@
     <string name="text_hint_your_number_phone">Ваш номер телефона: %s</string>
     <string name="text_update_info_person_account">Изменить информацию</string>
     <string name="text_delete_person_account">Удалить аккаунт</string>
+    <string name="button_text_download_photo_user">Установить фото профиля</string>
 
     <array name="array_specialization">
         <item>Сантехник</item>

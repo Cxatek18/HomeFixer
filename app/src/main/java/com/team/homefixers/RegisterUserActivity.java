@@ -1,13 +1,22 @@
 package com.team.homefixers;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,6 +27,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.team.homefixers.viewmodels.RegisterUserViewModel;
+
+import java.util.List;
 
 public class RegisterUserActivity extends AppCompatActivity {
 

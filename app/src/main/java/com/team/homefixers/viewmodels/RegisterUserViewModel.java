@@ -1,6 +1,8 @@
 package com.team.homefixers.viewmodels;
 
+import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -17,8 +19,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.team.homefixers.model.Executor;
 import com.team.homefixers.model.User;
+
+import java.io.File;
 
 public class RegisterUserViewModel extends ViewModel {
 
@@ -40,6 +47,7 @@ public class RegisterUserViewModel extends ViewModel {
                     user.setValue(firebaseAuth.getCurrentUser());
                     firebaseDatabase = FirebaseDatabase.getInstance();
                     executorReference = firebaseDatabase.getReference("Executor");
+
                     String userUid = firebaseAuth.getCurrentUser().getUid();
                     executorReference.child(userUid).addValueEventListener(new ValueEventListener() {
                         @Override

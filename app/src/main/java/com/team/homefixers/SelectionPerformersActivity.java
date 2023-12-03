@@ -35,7 +35,6 @@ public class SelectionPerformersActivity extends AppCompatActivity {
         anonymous = getIntent().getBooleanExtra(KEY_ANONYMOUS, false);
         executor = getIntent().getBooleanExtra(KEY_EXECUTOR, false);
         observeSelectionPerformerViewModel();
-        Log.d("SelectionPerformersActivity", "onCreate");
     }
 
     public static Intent newIntent(Context context) {

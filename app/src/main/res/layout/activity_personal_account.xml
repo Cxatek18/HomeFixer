@@ -24,29 +24,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/photoPersonalAccountUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/user_people_account_svgrepo_com"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titlePersonalAccountUser" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonUpdatePhotoPersonalAccountUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_btn_3"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/text_update_photo_person_account"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photoPersonalAccountUser" />
-
         <TextView
             android:id="@+id/textNamePersonalAccountUser"
             android:layout_width="wrap_content"
@@ -57,7 +34,7 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonUpdatePhotoPersonalAccountUser" />
+            app:layout_constraintTop_toBottomOf="@+id/titlePersonalAccountUser" />
 
         <TextView
             android:id="@+id/textEmailPersonalAccountUser"
