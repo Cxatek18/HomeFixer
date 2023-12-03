@@ -52,6 +52,12 @@
     <string name="text_update_info_person_account">Изменить информацию</string>
     <string name="text_delete_person_account">Удалить аккаунт</string>
     <string name="button_text_download_photo_user">Установить фото профиля</string>
+    <string name="title_change_info_user">Изменение информации вашего профиля</string>
+    <string name="hint_change_name">Ваше имя:</string>
+    <string name="hint_change_email">Ваш email:</string>
+    <string name="hint_change_city">Ваш город:</string>
+    <string name="hint_change_phone">Ваш номер телефона:</string>
+    <string name="button_text_change_info_user">Изменить</string>
 
     <array name="array_specialization">
         <item>Сантехник</item>
