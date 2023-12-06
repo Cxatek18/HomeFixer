@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,9 +39,20 @@ public class PersonalAccountActivity extends AppCompatActivity {
         initViews();
         viewModel.getInfoUser();
         observePersonalAccountViewModel();
+        clickButtons();
     }
 
-    public void observePersonalAccountViewModel(){
+    public void clickButtons() {
+        buttonChangeInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = ChangeInfoUserActivity.newIntent(PersonalAccountActivity.this);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void observePersonalAccountViewModel() {
         viewModel.getErrorMessage().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String error) {
@@ -79,12 +91,12 @@ public class PersonalAccountActivity extends AppCompatActivity {
         });
     }
 
-    public static Intent newIntent(Context context){
+    public static Intent newIntent(Context context) {
         Intent intent = new Intent(context, PersonalAccountActivity.class);
         return intent;
     }
 
-    private void initViews(){
+    private void initViews() {
         textNamePersonalAccountUser = findViewById(R.id.textNamePersonalAccountUser);
         textEmailPersonalAccountUser = findViewById(R.id.textEmailPersonalAccountUser);
         textCityPersonalAccountUser = findViewById(R.id.textCityPersonalAccountUser);
